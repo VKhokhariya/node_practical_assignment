@@ -30,7 +30,7 @@ var server = http.createServer((req,res)=>{
         req.on('end', () => {
             console.log(body);
             res.end('ok  => '+ body);
-            //fname=vibha&age=25
+            //fname=vishwa&age=21
         });        
     }
 }).listen(3000,()=>{console.log("server listening on port 3000")}); 
