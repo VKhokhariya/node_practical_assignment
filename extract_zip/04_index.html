@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Programming Language Chatbot</title>
+</head>
+<body>
+  <h1>Programming Language Chatbot</h1>
+  <div id="chatBox"></div>
+  <input type="text" id="messageInput" placeholder="Enter your message">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:3000');
+
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+
+    socket.onopen = () => {
+      console.log('WebSocket connection established.');
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'response') {
+        displayMessage(data.message);
+      }
+    };
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message) {
+        displayMessage(message, true);
+        socket.send(JSON.stringify({ type: 'chat', message }));
+        messageInput.value = '';
+      }
+    }
+
+    function displayMessage(message, isUser = false) {
+      const newMessage = document.createElement('div');
+      newMessage.innerText = isUser ? `You: ${message}` : `Bot: ${message}`;
+      chatBox.appendChild(newMessage);
+    }
+  </script>
+</body>
+</html>
