@@ -10,9 +10,9 @@ const readStream = fs.createReadStream(zipFilePath);
 
 // Extract the files from the zip archive
 readStream.pipe(unzipper.Extract({ path: extractDir }))
-  .on('finish', () => {
-    console.log('Extraction completed successfully.');
-  })
-  .on('error', (err) => {
-    console.error('Error occurred during extraction:', err);
-  });
+    .on('finish', () => {
+        console.log('Extraction completed successfully.');
+    })
+    .on('error', (err) => {
+        console.error('Error occurred during extraction:', err);
+    });

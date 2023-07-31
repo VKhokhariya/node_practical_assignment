@@ -6,20 +6,19 @@ const outputZipFile = 'statisFiles.zip'; // The name of the output ZIP file
 
 // Create a writable stream to the output ZIP file
 const output = fs.createWriteStream(outputZipFile);
-
 // Create an archiver object with the zip format
 const archive = archiver('zip', {
-  zlib: { level: 9 }, // Compression level (0-9)
+    zlib: { level: 9 }, // Compression level (0-9)
 });
 
 // Listen for 'error' events during the archiving process
 archive.on('error', (err) => {
-  throw err;
+    throw err;
 });
 
 // Listen for 'close' event when the archiving process is finished
 archive.on('close', () => {
-  console.log('Archive created successfully.');
+    console.log('Archive created successfully.');
 });
 
 // Pipe the archive data to the output file stream
