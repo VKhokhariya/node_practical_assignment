@@ -1,0 +1,13 @@
+{
+  "name": "question10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script1.js",
+  "scripts": {
+    "start": "node script1.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "script1":"node script1.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
